@@ -48,6 +48,8 @@ const featuredMovies = [
 
 const HeroCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [activeTrailer, setActiveTrailer] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -56,6 +58,15 @@ const HeroCarousel = () => {
 
         return () => clearInterval(timer);
     }, []);
+
+    const handleWatchTrailer = (posterUrl) => {
+        try {
+            const videoId = posterUrl.split('vi/')[1]?.split('/')[0];
+            if (videoId) setActiveTrailer(videoId);
+        } catch(err) {
+            console.error("No trailer ID found");
+        }
+    };
 
     return (
         <div style={{
@@ -140,19 +151,27 @@ const HeroCarousel = () => {
                             }}>
                                 {movie.description}
                             </p>
-                            <div style={{ display: 'flex', gap: '1rem' }}>
-                                <button style={{ 
-                                    display: 'flex', gap: '0.5rem', alignItems: 'center', padding: '0.9rem 1.8rem', 
-                                    fontSize: '1.1rem', backgroundColor: '#f5c518', color: '#000', border: 'none', 
-                                    borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s ease' 
-                                }}>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                                <button 
+                                    onClick={() => handleWatchTrailer(movie.poster)}
+                                    style={{ 
+                                        display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', padding: '0.9rem 1.8rem', 
+                                        fontSize: '1.1rem', backgroundColor: '#f5c518', color: '#000', border: 'none', 
+                                        borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s ease',
+                                        flex: '1 1 auto', whiteSpace: 'nowrap'
+                                    }}
+                                >
                                     <FaPlay /> Watch Trailer
                                 </button>
-                                <button style={{ 
-                                    display: 'flex', gap: '0.5rem', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.15)', 
-                                    color: 'white', border: '1px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(8px)',
-                                    padding: '0.9rem 1.8rem', fontSize: '1.1rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s ease'
-                                }}>
+                                <button 
+                                    onClick={() => navigate(`/movie/${movie.imdbID}`)}
+                                    style={{ 
+                                        display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.15)', 
+                                        color: 'white', border: '1px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(8px)',
+                                        padding: '0.9rem 1.8rem', fontSize: '1.1rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s ease',
+                                        flex: '1 1 auto', whiteSpace: 'nowrap'
+                                    }}
+                                >
                                     <FaInfoCircle /> More Info
                                 </button>
                             </div>
@@ -188,6 +207,23 @@ const HeroCarousel = () => {
                     />
                 ))}
             </div>
+
+            {/* Trailer Modal */}
+            {activeTrailer && (
+                <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.95)', zIndex: 1000, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <button onClick={() => setActiveTrailer(null)} style={{ position: 'absolute', top: '20px', right: '30px', color: 'var(--text-primary)', fontSize: '3rem', background: 'none', border: 'none', cursor: 'pointer', zIndex: 1001 }}>&times;</button>
+                    <div style={{ width: '90%', maxWidth: '900px' }}>
+                        <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '8px' }}>
+                            <iframe 
+                                src={`https://www.youtube.com/embed/${activeTrailer}?autoplay=1`} 
+                                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }} 
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
