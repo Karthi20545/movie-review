@@ -196,7 +196,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Content */}
-                <div className={mobile-menu-container }>
+                <div className={`mobile-menu-container ${isMobileMenuOpen ? 'open' : ''}`}>
                     <form onSubmit={handleSearch} style={{ width: '100%' }}>
                         <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '4px', overflow: 'hidden' }}>
                             <input 
