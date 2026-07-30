@@ -81,18 +81,15 @@ const Navbar = () => {
                             width: '220px', 
                             height: '70px', 
                             justifyContent: 'center', 
-                            overflow: 'hidden',
-                            backgroundColor: theme === 'light' ? '#1a1a1a' : 'transparent',
-                            borderRadius: theme === 'light' ? '8px' : '0',
-                            margin: theme === 'light' ? '10px 0' : '0',
-                            height: theme === 'light' ? '50px' : '70px',
-                            transition: 'all 0.3s ease'
+                            overflow: 'hidden'
                         }}>
                             <img src="/logo.png" alt="CineRate Logo" style={{ 
                                 height: '50px', 
                                 objectFit: 'contain', 
-                                mixBlendMode: 'screen',
-                                filter: 'brightness(1.1) contrast(1.1)',
+                                mixBlendMode: theme === 'light' ? 'multiply' : 'screen',
+                                filter: theme === 'light' 
+                                    ? 'invert(1) grayscale(1) contrast(3)' 
+                                    : 'brightness(1.1) contrast(1.1)',
                                 transform: 'scale(2.0)',
                                 transformOrigin: 'center center'
                             }} />
