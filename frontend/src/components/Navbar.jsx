@@ -67,20 +67,20 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar" style={{ borderBottom: 'none', padding: '0.8rem 0' }}>
+        <nav className="navbar" style={{ borderBottom: 'none', padding: '0.4rem 0', height: '70px', display: 'flex', alignItems: 'center' }}>
             <div className="container nav-content flex-col" style={{ maxWidth: '1600px', margin: '0 auto', display: 'flex' }}>
                 
                 {/* Top Bar for both Mobile and Desktop */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     {/* Left Side: Logo and Desktop Dropdown */}
                     <div className="flex items-center gap-4" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', margin: '-10px 0', width: '160px', justifyContent: 'flex-start' }}>
+                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', width: '160px', justifyContent: 'flex-start' }}>
                             <img src="/logo.png" alt="CineRate Logo" style={{ 
-                                height: '90px', 
+                                height: '50px', 
                                 objectFit: 'contain', 
                                 mixBlendMode: 'screen',
                                 filter: 'brightness(1.1) contrast(1.1)',
-                                transform: 'scale(1.3)',
+                                transform: 'scale(2.2)',
                                 transformOrigin: 'center center',
                                 marginLeft: '10px'
                             }} />
