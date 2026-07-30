@@ -31,7 +31,7 @@ const MovieCard = ({ movie }) => {
     useEffect(() => {
         const fetchInteractions = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/interactions/${movie.imdbID}`);
+                const res = await axios.get(`https://movie-review-0bv9.onrender.com/api/interactions/${movie.imdbID}`);
                 if (res.data) {
                     setLikesCount(res.data.likes);
                     setHeartsCount(res.data.hearts);
@@ -64,7 +64,7 @@ const MovieCard = ({ movie }) => {
 
         try {
             const action = newIsLiked ? 'increment' : 'decrement';
-            const res = await axios.post(`http://localhost:5000/api/interactions/${movie.imdbID}/like`, { action });
+            const res = await axios.post(`https://movie-review-0bv9.onrender.com/api/interactions/${movie.imdbID}/like`, { action });
             setLikesCount(res.data.likes);
         } catch (err) {
             console.error('Failed to update likes', err);
@@ -85,7 +85,7 @@ const MovieCard = ({ movie }) => {
 
         try {
             const action = newIsHearted ? 'increment' : 'decrement';
-            const res = await axios.post(`http://localhost:5000/api/interactions/${movie.imdbID}/heart`, { action });
+            const res = await axios.post(`https://movie-review-0bv9.onrender.com/api/interactions/${movie.imdbID}/heart`, { action });
             setHeartsCount(res.data.hearts);
         } catch (err) {
             console.error('Failed to update hearts', err);

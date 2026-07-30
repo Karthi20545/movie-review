@@ -17,7 +17,7 @@ const NewReleases = () => {
     useEffect(() => {
         const fetchNewReleases = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/movies/new-releases');
+                const response = await axios.get('https://movie-review-0bv9.onrender.com/api/movies/new-releases');
                 setMovies(response.data);
                 setFilteredMovies(response.data);
             } catch (err) {

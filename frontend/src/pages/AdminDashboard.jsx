@@ -19,7 +19,7 @@ const AdminDashboard = () => {
         const fetchStats = async () => {
             try {
                 const config = { headers: { Authorization: `Bearer ${user.token}` } };
-                const res = await axios.get('http://localhost:5000/api/reviews/admin/stats', config);
+                const res = await axios.get('https://movie-review-0bv9.onrender.com/api/reviews/admin/stats', config);
                 setStats(res.data);
             } catch (err) {
                 console.error('Failed to fetch stats', err);

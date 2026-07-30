@@ -204,7 +204,7 @@ const Actors = () => {
         setPersonDetails(null);
         setLoadingPerson(true);
         try {
-            const res = await axios.get(`http://localhost:5000/api/movies/person/${actor.id}`);
+            const res = await axios.get(`https://movie-review-0bv9.onrender.com/api/movies/person/${actor.id}`);
             setPersonDetails(res.data);
         } catch (err) {
             console.error(err);

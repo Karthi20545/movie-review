@@ -19,7 +19,7 @@ const KollywoodMovies = () => {
     useEffect(() => {
         const fetchKollywoodClassics = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/movies/kollywood-classics');
+                const response = await axios.get('https://movie-review-0bv9.onrender.com/api/movies/kollywood-classics');
                 setMovies(response.data);
                 setFilteredMovies(response.data);
             } catch (err) {

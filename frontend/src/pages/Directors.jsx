@@ -30,7 +30,7 @@ const Directors = () => {
         setPersonDetails(null);
         setLoadingPerson(true);
         try {
-            const res = await axios.get(`http://localhost:5000/api/movies/person/${director.id}`);
+            const res = await axios.get(`https://movie-review-0bv9.onrender.com/api/movies/person/${director.id}`);
             setPersonDetails(res.data);
         } catch (err) {
             console.error(err);

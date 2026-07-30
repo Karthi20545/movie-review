@@ -26,11 +26,11 @@ const MovieDetails = () => {
     const fetchMovieData = async () => {
         try {
             // Fetch movie details from our backend (which queries OMDB and aggregates local ratings)
-            const movieRes = await axios.get(`http://localhost:5000/api/movies/${imdbID}`);
+            const movieRes = await axios.get(`https://movie-review-0bv9.onrender.com/api/movies/${imdbID}`);
             setMovie(movieRes.data);
             
             // Fetch reviews from our backend
-            const reviewRes = await axios.get(`http://localhost:5000/api/reviews/${imdbID}`);
+            const reviewRes = await axios.get(`https://movie-review-0bv9.onrender.com/api/reviews/${imdbID}`);
             setReviews(reviewRes.data);
         } catch (err) {
             console.error(err);
@@ -45,7 +45,7 @@ const MovieDetails = () => {
             };
             
             // Send external ID and metadata so backend can create local movie if it doesn't exist
-            await axios.post('http://localhost:5000/api/reviews', {
+            await axios.post('https://movie-review-0bv9.onrender.com/api/reviews', {
                 imdbID: movie.imdbID,
                 title: movie.Title,
                 posterUrl: movie.Poster !== 'N/A' ? movie.Poster : '',

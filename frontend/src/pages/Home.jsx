@@ -77,7 +77,7 @@ const Home = () => {
     const fetchMovies = async (query) => {
         try {
             setLoading(true);
-            const url = query ? `http://localhost:5000/api/movies/search?keyword=${query}` : `http://localhost:5000/api/movies/search`;
+            const url = query ? `https://movie-review-0bv9.onrender.com/api/movies/search?keyword=${query}` : `https://movie-review-0bv9.onrender.com/api/movies/search`;
             const res = await axios.get(url);
             if (Array.isArray(res.data)) {
                 setMovies(res.data);
