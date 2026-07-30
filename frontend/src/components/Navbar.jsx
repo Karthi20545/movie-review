@@ -74,14 +74,25 @@ const Navbar = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     {/* Left Side: Logo and Desktop Dropdown */}
                     <div className="flex items-center gap-4" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', width: '220px', height: '70px', justifyContent: 'center', overflow: 'hidden' }}>
+                        <Link to="/" style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            textDecoration: 'none', 
+                            width: '220px', 
+                            height: '70px', 
+                            justifyContent: 'center', 
+                            overflow: 'hidden',
+                            backgroundColor: theme === 'light' ? '#1a1a1a' : 'transparent',
+                            borderRadius: theme === 'light' ? '8px' : '0',
+                            margin: theme === 'light' ? '10px 0' : '0',
+                            height: theme === 'light' ? '50px' : '70px',
+                            transition: 'all 0.3s ease'
+                        }}>
                             <img src="/logo.png" alt="CineRate Logo" style={{ 
                                 height: '50px', 
                                 objectFit: 'contain', 
-                                mixBlendMode: theme === 'light' ? 'multiply' : 'screen',
-                                filter: theme === 'light' 
-                                    ? 'invert(1) grayscale(1) contrast(100)' 
-                                    : 'brightness(1.1) contrast(1.1)',
+                                mixBlendMode: 'screen',
+                                filter: 'brightness(1.1) contrast(1.1)',
                                 transform: 'scale(2.0)',
                                 transformOrigin: 'center center'
                             }} />
