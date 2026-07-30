@@ -86,9 +86,9 @@ const Navbar = () => {
                             <img src="/logo.png" alt="CineRate Logo" style={{ 
                                 height: '50px', 
                                 objectFit: 'contain', 
-                                mixBlendMode: theme === 'light' ? 'multiply' : 'screen',
+                                mixBlendMode: theme === 'light' ? 'difference' : 'screen',
                                 filter: theme === 'light' 
-                                    ? 'invert(1) grayscale(1) contrast(3)' 
+                                    ? 'hue-rotate(180deg)' 
                                     : 'brightness(1.1) contrast(1.1)',
                                 transform: 'scale(2.0)',
                                 transformOrigin: 'center center'
