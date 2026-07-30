@@ -104,13 +104,13 @@ const MovieDetails = () => {
                     </div>
                     
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginTop: '1rem', flexWrap: 'wrap' }}>
-                        {/* IMDb Rating */}
+                        {/* CineRate Rating */}
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', letterSpacing: '1px', fontWeight: 'bold' }}>IMDb RATING</span>
+                            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', letterSpacing: '1px', fontWeight: 'bold' }}>CINERATE RATING</span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.25rem' }}>
                                 <FiStar fill="#f5c518" color="#f5c518" size={24} />
                                 <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1' }}>
-                                    <span style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{movie.imdbRating}<span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 'normal' }}>/10</span></span>
+                                    <span style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{movie.localAverageRating > 0 ? (movie.localAverageRating * 2).toFixed(1) : movie.imdbRating}<span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 'normal' }}>/10</span></span>
                                 </div>
                             </div>
                         </div>
