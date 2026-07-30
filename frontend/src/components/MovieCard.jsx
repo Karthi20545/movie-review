@@ -105,7 +105,7 @@ const MovieCard = ({ movie }) => {
                     src={movie.Poster !== 'N/A' && movie.Poster ? movie.Poster : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=300&h=450&fit=crop'} 
                     alt={movie.Title} 
                     onError={(e) => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=300&h=450&fit=crop'; }}
-                    style={{ width: '100%', height: '320px', objectFit: 'cover' }}
+                    style={{ width: '100%', aspectRatio: '2/3', objectFit: 'cover' }}
                 />
                 <div style={{ padding: '1rem', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                     <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem', color: 'var(--accent-primary)', fontWeight: '700' }}>
@@ -115,7 +115,7 @@ const MovieCard = ({ movie }) => {
                         {movie.Plot || "Action thriller with intense drama"}
                     </p>
                     
-                    <div className="flex gap-4 mt-auto">
+                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
                         <button 
                             onClick={handleLikeClick}
                             className="pill-btn"
@@ -123,7 +123,10 @@ const MovieCard = ({ movie }) => {
                                 backgroundColor: isLiked ? '#f5c518' : 'rgba(255, 255, 255, 0.1)',
                                 color: isLiked ? '#000' : '#fff',
                                 transition: 'all 0.3s ease',
-                                border: 'none'
+                                border: 'none',
+                                flex: '1 1 auto',
+                                padding: '0.5rem',
+                                fontSize: '0.85rem'
                             }}
                         >
                             👍 {likesCount}
@@ -133,9 +136,12 @@ const MovieCard = ({ movie }) => {
                             className="pill-btn"
                             style={{ 
                                 backgroundColor: isHearted ? '#ff4d6d' : 'rgba(255, 255, 255, 0.1)',
-                                color: isHearted ? '#fff' : '#fff',
+                                color: '#fff',
                                 transition: 'all 0.3s ease',
-                                border: 'none'
+                                border: 'none',
+                                flex: '1 1 auto',
+                                padding: '0.5rem',
+                                fontSize: '0.85rem'
                             }}
                         >
                             ❤️ {heartsCount}
