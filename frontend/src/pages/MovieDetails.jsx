@@ -67,16 +67,21 @@ const MovieDetails = () => {
     if (!movie) return <div className="container py-8"><p>Loading global movie data...</p></div>;
     if (movie.Response === "False" || movie.Error) return <div className="container py-8"><h2 style={{color: '#ef4444'}}>Movie Not Found</h2><p>{movie.Error || "Could not fetch details for this movie."}</p></div>;
 
+    // Consider movies from the last 1-2 years as new releases (e.g. >= 2025 based on current year 2026, or let's use >= 2024 to be safe)
+    const isNewRelease = movie.Year && parseInt(movie.Year) >= 2024;
+
     return (
         <div style={{ 
             backgroundColor: 'var(--bg-primary)', 
             color: 'var(--text-primary)', 
             minHeight: '100vh', 
             paddingBottom: '4rem',
-            backgroundImage: `linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.98)), url(${movie.Poster !== 'N/A' ? movie.Poster : ''})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
+            ...(isNewRelease ? {
+                backgroundImage: `linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.98)), url(${movie.Poster !== 'N/A' ? movie.Poster : ''})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed'
+            } : {})
         }}>
             {/* Header Section */}
             <div className="container" style={{ paddingTop: '1.5rem', paddingBottom: '0.5rem' }}>
