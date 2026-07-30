@@ -132,7 +132,7 @@ const HeroCarousel = () => {
                                 <span style={{ padding: '6px 14px', backgroundColor: '#f5c518', color: '#000', fontWeight: 'bold', borderRadius: '4px', fontSize: '0.95rem' }}>
                                     {movie.year}
                                 </span>
-                                <span style={{ backgroundColor: 'rgba(255,255,255,0.15)', padding: '6px 14px', backdropFilter: 'blur(4px)', color: 'var(--text-primary)', borderRadius: '4px', fontSize: '0.95rem', fontWeight: 'bold' }}>
+                                <span style={{ backgroundColor: 'rgba(255,255,255,0.15)', padding: '6px 14px', backdropFilter: 'blur(4px)', color: '#ffffff', borderRadius: '4px', fontSize: '0.95rem', fontWeight: 'bold' }}>
                                     ⭐ {movie.rating}
                                 </span>
                             </div>
@@ -140,7 +140,7 @@ const HeroCarousel = () => {
                                 fontSize: 'clamp(3rem, 5.5vw, 4.8rem)',
                                 fontWeight: 900,
                                 marginBottom: '1rem',
-                                color: 'var(--text-primary)',
+                                color: '#ffffff',
                                 lineHeight: 1.1,
                                 textShadow: '2px 2px 8px rgba(0,0,0,0.8)'
                             }}>

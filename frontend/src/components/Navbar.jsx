@@ -80,7 +80,7 @@ const Navbar = () => {
                                 objectFit: 'contain', 
                                 mixBlendMode: theme === 'light' ? 'multiply' : 'screen',
                                 filter: theme === 'light' 
-                                    ? 'invert(1) grayscale(1) contrast(5)' 
+                                    ? 'invert(1) grayscale(1) contrast(100)' 
                                     : 'brightness(1.1) contrast(1.1)',
                                 transform: 'scale(2.0)',
                                 transformOrigin: 'center center'
