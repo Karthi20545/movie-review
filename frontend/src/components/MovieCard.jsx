@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, featured = false }) => {
     // Generate a consistent pseudo-random initial count based on imdbID so it doesn't change on every render
     const generateInitialCount = (id, max) => {
         let hash = 0;
@@ -99,8 +99,76 @@ const MovieCard = ({ movie }) => {
     const title = movie.Title.length > 25 ? movie.Title.substring(0, 25) + '...' : movie.Title;
 
     return (
-        <Link to={`/movie/${movie.imdbID}`} style={{ textDecoration: 'none', display: 'flex', height: '100%' }}>
-            <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#1c1c1c', border: 'none', borderRadius: '12px', overflow: 'hidden' }}>
+        <Link to={`/movie/${movie.imdbID}`} style={{ textDecoration: 'none', display: 'flex', height: '100%', width: featured ? '100%' : 'auto', justifyContent: featured ? 'center' : 'initial' }}>
+            {featured ? (
+                // Premium Horizontal Layout (MNC style Top Result)
+                <div className="card" style={{ display: 'flex', flexDirection: 'row', width: '100%', maxWidth: '1000px', backgroundColor: '#141414', border: '1px solid #333', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
+                    <img 
+                        src={movie.Poster !== 'N/A' && movie.Poster ? movie.Poster : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=300&h=450&fit=crop'} 
+                        alt={movie.Title} 
+                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=300&h=450&fit=crop'; }}
+                        style={{ width: '350px', objectFit: 'cover' }}
+                    />
+                    <div style={{ padding: '3rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'left' }}>
+                        <span style={{ backgroundColor: '#f5c518', color: '#000', padding: '6px 12px', borderRadius: '4px', fontWeight: 'bold', fontSize: '0.85rem', width: 'fit-content', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                            Top Search Result
+                        </span>
+                        <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '2.5rem', color: '#ffffff', fontWeight: '800', lineHeight: '1.1' }}>
+                            {movie.Title}
+                        </h3>
+                        <div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '1.5rem' }}>
+                            <span style={{ fontSize: '1.2rem', color: '#a3a3a3', fontWeight: '500' }}>{movie.Year}</span>
+                            <span style={{ padding: '4px 8px', border: '1px solid #a3a3a3', color: '#a3a3a3', borderRadius: '4px', fontSize: '0.8rem' }}>HD</span>
+                        </div>
+                        <p style={{ fontSize: '1.1rem', color: '#cccccc', marginBottom: '2.5rem', lineHeight: '1.6', maxWidth: '600px' }}>
+                            {movie.Plot || "Action thriller with intense drama"}
+                        </p>
+                        
+                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                            <button 
+                                onClick={handleLikeClick}
+                                className="pill-btn"
+                                style={{ 
+                                    backgroundColor: isLiked ? '#f5c518' : 'rgba(255, 255, 255, 0.1)',
+                                    color: isLiked ? '#000' : '#fff',
+                                    transition: 'all 0.3s ease',
+                                    border: 'none',
+                                    padding: '0.8rem 2rem',
+                                    fontSize: '1rem',
+                                    borderRadius: '8px',
+                                    fontWeight: 'bold',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '8px'
+                                }}
+                            >
+                                👍 {likesCount} Likes
+                            </button>
+                            <button 
+                                onClick={handleHeartClick}
+                                className="pill-btn"
+                                style={{ 
+                                    backgroundColor: isHearted ? '#ff4d6d' : 'rgba(255, 255, 255, 0.1)',
+                                    color: '#fff',
+                                    transition: 'all 0.3s ease',
+                                    border: 'none',
+                                    padding: '0.8rem 2rem',
+                                    fontSize: '1rem',
+                                    borderRadius: '8px',
+                                    fontWeight: 'bold',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '8px'
+                                }}
+                            >
+                                ❤️ {heartsCount} Hearts
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                // Normal Grid Layout
+                <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#1c1c1c', border: 'none', borderRadius: '12px', overflow: 'hidden' }}>
                 <img 
                     src={movie.Poster !== 'N/A' && movie.Poster ? movie.Poster : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=300&h=450&fit=crop'} 
                     alt={movie.Title} 
@@ -147,8 +215,9 @@ const MovieCard = ({ movie }) => {
                             ❤️ {heartsCount}
                         </button>
                     </div>
+                    </div>
                 </div>
-            </div>
+            )}
         </Link>
     );
 };

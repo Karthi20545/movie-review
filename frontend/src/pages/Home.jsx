@@ -103,13 +103,14 @@ const Home = () => {
                 </h2>
 
                 <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: movies.length > 0 && movies.length <= 3 
+                    display: movies.length === 1 ? 'flex' : 'grid', 
+                    gridTemplateColumns: movies.length > 1 && movies.length <= 3 
                         ? `repeat(${movies.length}, minmax(200px, 300px))`
                         : 'repeat(auto-fill, minmax(200px, 1fr))', 
                     justifyContent: movies.length > 0 && movies.length <= 3 ? 'center' : 'initial',
                     gap: '1.5rem',
-                    marginBottom: '2rem'
+                    marginBottom: '2rem',
+                    width: '100%'
                 }}>
                     {loading ? (
                         <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading movies...</div>
@@ -117,7 +118,7 @@ const Home = () => {
                         <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>No movies found. Try another search.</div>
                     ) : (
                         movies.map(movie => (
-                            <MovieCard key={movie.imdbID} movie={movie} />
+                            <MovieCard key={movie.imdbID} movie={movie} featured={movies.length === 1} />
                         ))
                     )}
                 </div>
