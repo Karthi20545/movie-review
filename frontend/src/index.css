@@ -182,11 +182,35 @@ a:hover {
 .mb-8 { margin-bottom: 2rem; }
 .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
 
+/* Responsive Utilities */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
+.mobile-menu-container { display: none; }
+
+@media (max-width: 900px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: flex; }
+  .mobile-menu-container.open { 
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+}
+
 /* Grid */
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
 }
 
 /* Navbar */
@@ -314,14 +338,24 @@ a:hover {
 .login-card {
   background-color: transparent;
   border: none;
-  padding: 2rem 3.5rem;
+  padding: 1.5rem 1rem;
   box-shadow: none;
+}
+@media (min-width: 640px) {
+  .login-card {
+    padding: 2rem 3.5rem;
+  }
 }
 
 .input-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
+}
+@media (min-width: 640px) {
+  .input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Auth Input Fields styling upgrade */

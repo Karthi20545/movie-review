@@ -79,9 +79,9 @@ const MovieDetails = () => {
         }}>
             {/* Header Section */}
             <div className="container" style={{ paddingTop: '1.5rem', paddingBottom: '0.5rem' }}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem' }}>
-                    <div>
-                        <h1 style={{ fontSize: '3.5rem', fontWeight: '400', margin: '0 0 0.5rem 0', lineHeight: '1.1' }}>{movie.Title}</h1>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem', gap: '1rem' }}>
+                    <div style={{ flex: '1 1 100%' }}>
+                        <h1 style={{ fontSize: 'clamp(2rem, 5vw + 1rem, 3.5rem)', fontWeight: '400', margin: '0 0 0.5rem 0', lineHeight: '1.1' }}>{movie.Title}</h1>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
                             <span>{movie.Year}</span>
                             {movie.Certification !== 'N/A' && (
@@ -99,7 +99,7 @@ const MovieDetails = () => {
                         </div>
                     </div>
                     
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginTop: '1rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginTop: '1rem', flexWrap: 'wrap' }}>
                         {/* IMDb Rating */}
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', letterSpacing: '1px', fontWeight: 'bold' }}>IMDb RATING</span>
@@ -276,7 +276,7 @@ const MovieDetails = () => {
                 </div>
 
                 {/* Right Sidebar (Watchlist & Netflix) */}
-                <div style={{ width: '100%', maxWidth: '350px' }}>
+                <div style={{ flex: '1 1 300px', width: '100%' }}>
                     <div style={{ marginBottom: '1rem' }}>
                         <span style={{ fontSize: '0.8rem', color: '#f5c518', fontWeight: 'bold', letterSpacing: '1px' }}>STREAMING</span>
                         <div style={{ backgroundColor: 'var(--bg-card)', padding: '1rem', borderRadius: '4px', marginTop: '0.5rem', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center' }}>
