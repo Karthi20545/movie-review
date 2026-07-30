@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const featuredMovies = [
     {
         id: 1,
-        imdbID: "tmdb_1075794", // Leo
+        imdbID: "tt15654328", // Leo (Vijay)
         title: "Leo",
         description: "A cafe owner becomes a local hero, which draws the attention of a drug cartel that suspects he is their former associate.",
         poster: "https://img.youtube.com/vi/Po3jStA673E/maxresdefault.jpg",
@@ -14,7 +14,7 @@ const featuredMovies = [
     },
     {
         id: 2,
-        imdbID: "tmdb_743563", // Vikram
+        imdbID: "tt11218202", // Vikram
         title: "Vikram",
         description: "A special investigator discovers a case of serial killings is not what it seems to be, leading down a path to war.",
         poster: "https://img.youtube.com/vi/OKBMCL-frPU/maxresdefault.jpg",
@@ -23,7 +23,7 @@ const featuredMovies = [
     },
     {
         id: 3,
-        imdbID: "tmdb_937020", // Jailer
+        imdbID: "tt11652292", // Jailer
         title: "Jailer",
         description: "A retired jailer goes on a manhunt to find his son's killers. The journey leads him to face his past.",
         poster: "https://img.youtube.com/vi/ugzPkXEqff4/maxresdefault.jpg",
@@ -32,7 +32,7 @@ const featuredMovies = [
     },
     {
         id: 4,
-        imdbID: "tmdb_962074", // Captain Miller
+        imdbID: "tt17581172", // Captain Miller
         title: "Captain Miller",
         description: "A former British soldier led by a rebel captain defends a hidden treasure from the British army in the 1930s.",
         poster: "https://img.youtube.com/vi/ujhWbKP1rKA/maxresdefault.jpg",
@@ -41,7 +41,7 @@ const featuredMovies = [
     },
     {
         id: 5,
-        imdbID: "tmdb_660046", // Ponniyin Selvan
+        imdbID: "tt10701074", // Ponniyin Selvan
         title: "Ponniyin Selvan: Part I",
         description: "Vandiyathevan sets out to cross the Chola land to deliver a message from the Crown Prince Aditha Karikalan.",
         poster: "https://img.youtube.com/vi/D4qAQYlgZQs/maxresdefault.jpg",
