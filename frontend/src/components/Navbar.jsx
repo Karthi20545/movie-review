@@ -74,8 +74,13 @@ const Navbar = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     {/* Left Side: Logo and Desktop Dropdown */}
                     <div className="flex items-center gap-4" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                            <img src="/logo.png" alt="CineRate Logo" style={{ height: '45px', objectFit: 'contain' }} />
+                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', margin: '-10px 0' }}>
+                            <img src="/logo.png" alt="CineRate Logo" style={{ 
+                                height: '70px', 
+                                objectFit: 'contain', 
+                                mixBlendMode: 'screen',
+                                filter: 'brightness(1.1) contrast(1.1)'
+                            }} />
                         </Link>
                         
                         {/* Desktop Categories Dropdown */}
