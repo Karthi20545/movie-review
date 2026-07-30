@@ -23,7 +23,7 @@ const Navbar = () => {
         e.preventDefault();
         if (keyword.trim()) {
             setIsMobileMenuOpen(false);
-            navigate(/?search=);
+            navigate(`/?search=${encodeURIComponent(keyword.trim())}`);
         }
     };
 
