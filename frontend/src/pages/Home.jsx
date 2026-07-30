@@ -104,7 +104,10 @@ const Home = () => {
 
                 <div style={{ 
                     display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
+                    gridTemplateColumns: movies.length > 0 && movies.length <= 3 
+                        ? `repeat(${movies.length}, minmax(200px, 300px))`
+                        : 'repeat(auto-fill, minmax(200px, 1fr))', 
+                    justifyContent: movies.length > 0 && movies.length <= 3 ? 'center' : 'initial',
                     gap: '1.5rem',
                     marginBottom: '2rem'
                 }}>
