@@ -7,8 +7,6 @@ import { FiStar } from 'react-icons/fi';
 const MovieDetails = () => {
     // We now use imdbID from the URL
     const { id: imdbID } = useParams();
-    const { user } = useContext(AuthContext);
-    
     const [movie, setMovie] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [rating, setRating] = useState(5);
@@ -18,6 +16,15 @@ const MovieDetails = () => {
     // Modal states
     const [activeModal, setActiveModal] = useState(null);
     const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
+
+    // New states for interactive buttons
+    const [inWatchlist, setInWatchlist] = useState(false);
+    const [isWatched, setIsWatched] = useState(false);
+    
+    // Ref for scrolling to review section
+    const reviewSectionRef = useRef(null);
+    
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         fetchMovieData();
@@ -109,7 +116,11 @@ const MovieDetails = () => {
                         </div>
                         
                         {/* Local Rating */}
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', padding: '0.5rem', borderRadius: '4px' }}>
+                        <div 
+                            onClick={() => reviewSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
+                            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', padding: '0.5rem', borderRadius: '4px' }}
+                            className="hover:bg-gray-800 transition"
+                        >
                             <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', letterSpacing: '1px', fontWeight: 'bold' }}>YOUR RATING</span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.25rem', color: '#5799ef' }}>
                                 <FiStar size={24} />
@@ -264,12 +275,6 @@ const MovieDetails = () => {
                             ))}
                         </span>
                     </div>
-
-                    {/* IMDB Pro */}
-                    <div className="mt-4 flex items-center gap-2">
-                        <span style={{ fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px' }}>IMDbPro</span>
-                        <span style={{ color: '#5799ef', cursor: 'pointer', fontWeight: 'bold' }} className="hover:underline">See production info at IMDbPro</span>
-                    </div>
                 </div>
 
                 {/* Right Sidebar (Watchlist & Netflix) */}
@@ -281,28 +286,36 @@ const MovieDetails = () => {
                         </div>
                     </div>
 
-                    <button style={{ backgroundColor: '#f5c518', color: '#000', width: '100%', padding: '0.8rem', borderRadius: '4px', border: 'none', fontWeight: 'bold', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                        <span style={{ fontSize: '1.5rem', fontWeight: '400' }}>+</span> 
+                    <button 
+                        onClick={() => setInWatchlist(!inWatchlist)}
+                        style={{ backgroundColor: inWatchlist ? '#2dd36f' : '#f5c518', color: '#000', width: '100%', padding: '0.8rem', borderRadius: '4px', border: 'none', fontWeight: 'bold', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', transition: 'all 0.3s ease' }}
+                    >
+                        <span style={{ fontSize: '1.5rem', fontWeight: '400' }}>{inWatchlist ? '✓' : '+'}</span> 
                         <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                            <span>Add to Watchlist</span>
-                            <span style={{ fontSize: '0.75rem', fontWeight: 'normal' }}>Added by 98K users</span>
+                            <span>{inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}</span>
+                            <span style={{ fontSize: '0.75rem', fontWeight: 'normal' }}>
+                                Added by {movie.Popularity && movie.Popularity !== 'N/A' ? movie.Popularity : '12'}K users
+                            </span>
                         </div>
                     </button>
                     
-                    <button style={{ backgroundColor: 'transparent', color: 'var(--text-primary)', width: '100%', padding: '0.8rem', borderRadius: '4px', border: '1px solid #ffffff50', fontWeight: 'bold', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', marginTop: '0.5rem' }} className="hover:bg-gray-800 transition">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                        Mark as watched
+                    <button 
+                        onClick={() => setIsWatched(!isWatched)}
+                        style={{ backgroundColor: isWatched ? '#333' : 'transparent', color: isWatched ? '#2dd36f' : 'var(--text-primary)', width: '100%', padding: '0.8rem', borderRadius: '4px', border: isWatched ? '1px solid #2dd36f' : '1px solid #ffffff50', fontWeight: 'bold', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', marginTop: '0.5rem', transition: 'all 0.3s ease' }} 
+                        className="hover:bg-gray-800 transition"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        {isWatched ? 'Watched' : 'Mark as watched'}
                     </button>
                     
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #ffffff30', fontSize: '0.9rem' }}>
-                        <div><span style={{ fontWeight: 'bold' }}>{movie.localNumReviews}</span> User reviews</div>
-                        <div><span style={{ fontWeight: 'bold' }}>25</span> Critic reviews</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #ffffff30', fontSize: '0.9rem' }}>
+                        <div><span style={{ fontWeight: 'bold' }}>{movie.localNumReviews || reviews.length}</span> User reviews</div>
                     </div>
                 </div>
             </div>
 
             {/* Our Custom Database Reviews Section Below */}
-            <div className="container mt-12 pt-8" style={{ borderTop: '1px solid var(--border-color)' }}>
+            <div ref={reviewSectionRef} className="container mt-12 pt-8" style={{ borderTop: '1px solid var(--border-color)' }}>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div>
                         <h2 style={{ color: '#f5c518', borderLeft: '4px solid #f5c518', paddingLeft: '0.5rem' }}>User Reviews (Database)</h2>
@@ -336,7 +349,7 @@ const MovieDetails = () => {
                                 {error && <div style={{ color: '#ef4444', marginBottom: '1rem', padding: '0.5rem', backgroundColor: 'rgba(239,68,68,0.1)', borderRadius: '4px' }}>{error}</div>}
                                 
                                 <div className="input-group mb-4">
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)', fontWeight: 'bold', fontSize: '0.85rem', letterSpacing: '1px' }}>RATING (1-10)</label>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)', fontWeight: 'bold', fontSize: '0.85rem', letterSpacing: '1px' }}>RATING (1-5)</label>
                                     <select 
                                         className="input-field"
                                         style={{ width: '100%', padding: '0.8rem', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: 'var(--text-primary)', borderRadius: '4px' }}
