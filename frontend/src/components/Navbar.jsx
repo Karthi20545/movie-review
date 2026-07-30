@@ -103,7 +103,7 @@ const Navbar = () => {
                                     fontWeight: '600'
                                 }}
                             >
-                                <FiMenu size={18} /> Menu <span style={{ fontSize: '0.6rem', marginLeft: '2px' }}>?</span>
+                                <FiMenu size={18} /> Menu
                             </button>
                             
                             <div style={dropdownStyle}>
