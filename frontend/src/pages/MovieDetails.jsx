@@ -65,6 +65,7 @@ const MovieDetails = () => {
     };
 
     if (!movie) return <div className="container py-8"><p>Loading global movie data...</p></div>;
+    if (movie.Response === "False" || movie.Error) return <div className="container py-8"><h2 style={{color: '#ef4444'}}>Movie Not Found</h2><p>{movie.Error || "Could not fetch details for this movie."}</p></div>;
 
     return (
         <div style={{ 
@@ -238,7 +239,7 @@ const MovieDetails = () => {
                 <div style={{ flex: '1 1 60%', minWidth: '300px' }}>
                     {/* Genres */}
                     <div className="flex flex-wrap gap-3 mb-4">
-                        {movie.Genre.split(',').map((g, idx) => (
+                        {movie.Genre && movie.Genre.split(',').map((g, idx) => (
                             <span key={idx} style={{ border: '1px solid #ffffff50', borderRadius: '16px', padding: '0.2rem 1rem', fontSize: '0.95rem', color: 'var(--text-primary)', cursor: 'pointer' }} className="hover:bg-white hover:text-black transition">
                                 {g.trim()}
                             </span>
@@ -262,7 +263,7 @@ const MovieDetails = () => {
                     <div style={{ borderTop: '1px solid #ffffff30', borderBottom: '1px solid #ffffff30', padding: '1rem 0', display: 'flex' }}>
                         <span style={{ fontWeight: 'bold', width: '100px', color: 'var(--text-primary)' }}>Stars</span>
                         <span style={{ color: '#5799ef', cursor: 'pointer' }} className="hover:underline">
-                            {movie.Actors.split(',').map((actor, idx, arr) => (
+                            {movie.Actors && movie.Actors.split(',').map((actor, idx, arr) => (
                                 <span key={idx}>{actor.trim()}{idx < arr.length - 1 ? ' • ' : ''}</span>
                             ))}
                         </span>

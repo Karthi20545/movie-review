@@ -67,7 +67,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar" style={{ borderBottom: 'none', padding: '0.8rem 2rem' }}>
+        <nav className="navbar" style={{ borderBottom: 'none', padding: '0.8rem 0' }}>
             <div className="container nav-content flex-col" style={{ maxWidth: '1600px', margin: '0 auto', display: 'flex' }}>
                 
                 {/* Top Bar for both Mobile and Desktop */}
