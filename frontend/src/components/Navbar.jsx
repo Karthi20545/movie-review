@@ -74,14 +74,15 @@ const Navbar = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     {/* Left Side: Logo and Desktop Dropdown */}
                     <div className="flex items-center gap-4" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', margin: '-10px 0', width: '130px', justifyContent: 'flex-start', overflow: 'visible' }}>
+                        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', margin: '-10px 0', width: '160px', justifyContent: 'flex-start' }}>
                             <img src="/logo.png" alt="CineRate Logo" style={{ 
                                 height: '90px', 
                                 objectFit: 'contain', 
                                 mixBlendMode: 'screen',
                                 filter: 'brightness(1.1) contrast(1.1)',
-                                transform: 'scale(1.4)',
-                                transformOrigin: 'left center'
+                                transform: 'scale(1.3)',
+                                transformOrigin: 'center center',
+                                marginLeft: '10px'
                             }} />
                         </Link>
                         
@@ -127,7 +128,7 @@ const Navbar = () => {
                     </div>
                     
                     {/* Center: Search Bar (Desktop Only) */}
-                    <form onSubmit={handleSearch} className="desktop-only" style={{ flex: 1, maxWidth: '800px', margin: '0 2rem' }}>
+                    <form onSubmit={handleSearch} className="desktop-only" style={{ flex: 1, maxWidth: '500px', margin: '0 2rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '4px', overflow: 'hidden', width: '100%' }}>
                             <input 
                                 type="text" 
